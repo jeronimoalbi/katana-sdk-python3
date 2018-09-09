@@ -45,12 +45,14 @@ DL = DOWNLOAD = b'\x04'
 META_VALUES = (EMPTY_META, SE, FI, TR, DL)
 
 # Multipart request frames
-Frames = namedtuple('Frames', ['action', 'mappings', 'stream'])
+Frames = namedtuple('Frames', ['id', 'action', 'mappings', 'stream'])
 
 
-def create_error_stream(message, *args, **kwargs):
+def create_error_stream(rid, message, *args, **kwargs):
     """Create a new multipart error stream.
 
+    :param rid: Request ID.
+    :type rid: bytes
     :param message: Error message.
     :type message: str
 
@@ -61,7 +63,7 @@ def create_error_stream(message, *args, **kwargs):
     if args or kwargs:
         message = message.format(*args, **kwargs)
 
-    return [EMPTY_META, pack(ErrorPayload.new(message).entity())]
+    return [rid, EMPTY_META, pack(ErrorPayload.new(message).entity())]
 
 
 class ComponentServer(object):
@@ -231,15 +233,7 @@ class ComponentServer(object):
         return payload
 
     @asyncio.coroutine
-    def __process_request(self, stream):
-        try:
-            frames = Frames(*stream)
-        except asyncio.CancelledError:
-            raise
-        except:
-            LOG.error('Received an invalid multipart stream')
-            return
-
+    def __process_request(self, frames):
         # Update global schema registry when mappings are sent
         if frames.mappings:
             self.__update_schema_registry(frames.mappings)
@@ -249,6 +243,7 @@ class ComponentServer(object):
         if action not in self.callbacks:
             # Return an error when action doesn't exist
             return create_error_stream(
+                frames.id,
                 'Invalid action for component {}: "{}"',
                 self.component_title,
                 action,
@@ -261,11 +256,17 @@ class ComponentServer(object):
             raise
         except:
             LOG.exception('Received an invalid message format')
-            return create_error_stream('Internal communication failed')
+            return create_error_stream(
+                frames.id,
+                'Internal communication failed',
+                )
 
         payload = yield from self.__process_request_payload(action, payload)
-
-        return [self.get_response_meta(payload) or EMPTY_META, pack(payload)]
+        return [
+            frames.id,
+            self.get_response_meta(payload) or EMPTY_META,
+            pack(payload),
+            ]
 
     @asyncio.coroutine
     def process_payload(self, action, payload):
@@ -388,9 +389,6 @@ class ComponentServer(object):
 
         """
 
-        # Create a generic error stream
-        error_stream = create_error_stream('Failed to handle request')
-
         self.context = zmq.asyncio.Context()
         self.poller = zmq.asyncio.Poller()
 
@@ -412,23 +410,36 @@ class ComponentServer(object):
                     # Get request multipart stream
                     stream = yield from self.__socket.recv_multipart()
 
-                    # Process request and get response stream
+                    # Parse the multipart request
                     try:
-                        stream = yield from asyncio.wait_for(
-                            self.__process_request(stream),
-                            timeout=timeout,
-                            )
-                    except asyncio.TimeoutError:
-                        msg = 'SDK execution timed out after {}ms'.format(
-                            int(timeout * 1000),
-                            pid,
-                            )
-                        LOG.warn('{}. PID: {}'.format(msg, pid))
-                        stream = create_error_stream(msg)
+                        frames = Frames(*stream)
+                    except asyncio.CancelledError:
+                        raise
+                    except:
+                        LOG.error('Received an invalid multipart stream')
+                        stream = None
+                        frames = None
+                    else:
+                        # Process request and get response stream
+                        try:
+                            stream = yield from asyncio.wait_for(
+                                self.__process_request(frames),
+                                timeout=timeout,
+                                )
+                        except asyncio.TimeoutError:
+                            msg = 'SDK execution timed out after {}ms'.format(
+                                int(timeout * 1000),
+                                pid,
+                                )
+                            LOG.warn('{}. PID: {}'.format(msg, pid))
+                            stream = create_error_stream(frames.id, msg)
 
                     # When there is no response send a generic error
                     if not stream:
-                        stream = error_stream
+                        stream = create_error_stream(
+                            frames.id if frames else '-',
+                            'Failed to handle request',
+                            )
 
                     yield from self.__socket.send_multipart(stream)
         except:
