@@ -1,7 +1,7 @@
 .. API documentation templates inside `source/api` were
-.. generated using: sphinx-apidoc -o source/api -T ../katana
+.. generated using: sphinx-apidoc -o source/api -T ../kusanagi
 
-KATANA SDK for Python 3
+KUSANAGI SDK for Python 3
 =======================
 
 :Release: |release|

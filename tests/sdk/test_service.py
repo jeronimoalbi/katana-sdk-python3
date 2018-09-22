@@ -1,5 +1,5 @@
-from katana.sdk.service import get_component
-from katana.sdk.service import Service
+from kusanagi.sdk.service import get_component
+from kusanagi.sdk.service import Service
 
 
 def test_service_component():

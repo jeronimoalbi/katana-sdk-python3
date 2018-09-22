@@ -2,19 +2,19 @@
 from setuptools import find_packages
 from setuptools import setup
 
-from katana import __version__
+from kusanagi import __version__
 
 
 setup(
-    name='katana-sdk-python3',
+    name='kusanagi-sdk-python3',
     version=__version__,
     url='http://kusanagi.io/',
     license='MIT',
     author='Jerónimo Albi',
     author_email='jeronimo.albi@kusanagi.io',
-    description='Python 3 SDK to interface with the KATANA™ framework',
+    description='Python 3 SDK to interface with the KUSANAGI™ framework',
     platforms=['POSIX'],
-    download_url='https://github.com/kusanagi/katana-sdk-python3/releases',
+    download_url='https://github.com/kusanagi/kusanagi-sdk-python3/releases',
     packages=find_packages(exclude=['tests']),
     include_package_data=True,
     zip_safe=True,

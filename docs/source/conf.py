@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# KATANA SDK for Python 3 documentation build configuration file, created by
+# KUSANAGI SDK for Python 3 documentation build configuration file, created by
 # sphinx-quickstart on Fri Jan 27 15:37:32 2017.
 #
 # This file is execfile()d with the current directory set to its
@@ -15,7 +15,7 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 from datetime import datetime
-from katana import __version__
+from kusanagi import __version__
 
 # -- General configuration ------------------------------------------------
 
@@ -41,7 +41,7 @@ master_doc = 'index'
 
 # General information about the project.
 this_year = datetime.now().year
-project = 'KATANA SDK for Python 3'
+project = 'KUSANAGI SDK for Python 3'
 copyright = '2016-{} KUSANAGI S.L. All rights reserved'.format(this_year)
 author = 'Jerónimo Albi'
 
@@ -102,7 +102,7 @@ html_title = 'Release v{}'.format(release)
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'KATANASDKforPython3doc'
+htmlhelp_basename = 'KUSANAGISDKforPython3doc'
 
 
 # -- Options for manual page output ---------------------------------------
@@ -111,8 +111,8 @@ htmlhelp_basename = 'KATANASDKforPython3doc'
 # (source start file, name, description, authors, manual section).
 man_pages = [(
     master_doc,
-    'katanasdkforpython3',
-    'KATANA SDK for Python 3 Documentation',
+    'kusanagisdkforpython3',
+    'KUSANAGI SDK for Python 3 Documentation',
     [author],
     1,
     )]

@@ -1,8 +1,8 @@
 import pytest
 
-from katana.schema import get_schema_registry
-from katana.sdk.component import Component
-from katana.sdk.component import ComponentError
+from kusanagi.schema import get_schema_registry
+from kusanagi.sdk.component import Component
+from kusanagi.sdk.component import ComponentError
 
 
 def test_component():

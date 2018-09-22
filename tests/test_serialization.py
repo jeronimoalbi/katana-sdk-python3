@@ -4,12 +4,12 @@ import time
 
 import pytest
 
-from katana.payload import Payload
-from katana.serialization import decode
-from katana.serialization import encode
-from katana.serialization import pack
-from katana.serialization import stream_to_payload
-from katana.serialization import unpack
+from kusanagi.payload import Payload
+from kusanagi.serialization import decode
+from kusanagi.serialization import encode
+from kusanagi.serialization import pack
+from kusanagi.serialization import stream_to_payload
+from kusanagi.serialization import unpack
 
 
 def test_encode():

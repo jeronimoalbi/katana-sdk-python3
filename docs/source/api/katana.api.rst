@@ -1,4 +1,4 @@
-katana.api
+kusanagi.api
 ==========
 
 Subpackages
@@ -6,61 +6,61 @@ Subpackages
 
 .. toctree::
 
-    katana.api.http
-    katana.api.schema
+    kusanagi.api.http
+    kusanagi.api.schema
 
-katana.api.action
+kusanagi.api.action
 -----------------
 
-.. automodule:: katana.api.action
+.. automodule:: kusanagi.api.action
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.api.base
+kusanagi.api.base
 ---------------
 
-.. automodule:: katana.api.base
+.. automodule:: kusanagi.api.base
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.api.file
+kusanagi.api.file
 ---------------
 
-.. automodule:: katana.api.file
+.. automodule:: kusanagi.api.file
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.api.param
+kusanagi.api.param
 ----------------
 
-.. automodule:: katana.api.param
+.. automodule:: kusanagi.api.param
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.api.request
+kusanagi.api.request
 ------------------
 
-.. automodule:: katana.api.request
+.. automodule:: kusanagi.api.request
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.api.response
+kusanagi.api.response
 -------------------
 
-.. automodule:: katana.api.response
+.. automodule:: kusanagi.api.response
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.api.transport
+kusanagi.api.transport
 --------------------
 
-.. automodule:: katana.api.transport
+.. automodule:: kusanagi.api.transport
     :members:
     :undoc-members:
     :show-inheritance:

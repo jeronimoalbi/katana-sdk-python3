@@ -1,8 +1,8 @@
 import pytest
 
-from katana.versions import InvalidVersionPattern
-from katana.versions import VersionNotFound
-from katana.versions import VersionString
+from kusanagi.versions import InvalidVersionPattern
+from kusanagi.versions import VersionNotFound
+from kusanagi.versions import VersionString
 
 GREATER = 1
 EQUAL = 0

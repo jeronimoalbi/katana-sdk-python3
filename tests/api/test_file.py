@@ -2,10 +2,10 @@ import os
 
 import pytest
 
-from katana.api.file import File
-from katana.api.file import file_to_payload
-from katana.api.file import payload_to_file
-from katana.payload import FIELD_MAPPINGS
+from kusanagi.api.file import File
+from kusanagi.api.file import file_to_payload
+from kusanagi.api.file import payload_to_file
+from kusanagi.payload import FIELD_MAPPINGS
 
 
 def test_api_file_to_payload():
@@ -105,7 +105,7 @@ def test_api_file(data_path, mocker):
     # Check extracted file values
     assert file.get_mime() == 'application/json'
     assert file.get_filename() == 'foo.json'
-    assert file.get_size() == 54
+    assert file.get_size() == 56
 
     # Read file contents
     with open(local_file, 'rb') as test_file:

@@ -1,7 +1,7 @@
-from katana.api.http.request import HttpRequest
-from katana.api.file import File
-from katana.api.file import payload_to_file
-from katana.utils import MultiDict
+from kusanagi.api.http.request import HttpRequest
+from kusanagi.api.file import File
+from kusanagi.api.file import payload_to_file
+from kusanagi.utils import MultiDict
 
 
 def test_api_http_request():

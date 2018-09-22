@@ -1,15 +1,15 @@
-from katana.api.param import Param
-from katana.api.param import param_to_payload
-from katana.api.param import payload_to_param
-from katana.api.param import TYPE_ARRAY
-from katana.api.param import TYPE_BINARY
-from katana.api.param import TYPE_BOOLEAN
-from katana.api.param import TYPE_INTEGER
-from katana.api.param import TYPE_FLOAT
-from katana.api.param import TYPE_NULL
-from katana.api.param import TYPE_OBJECT
-from katana.api.param import TYPE_STRING
-from katana.payload import FIELD_MAPPINGS
+from kusanagi.api.param import Param
+from kusanagi.api.param import param_to_payload
+from kusanagi.api.param import payload_to_param
+from kusanagi.api.param import TYPE_ARRAY
+from kusanagi.api.param import TYPE_BINARY
+from kusanagi.api.param import TYPE_BOOLEAN
+from kusanagi.api.param import TYPE_INTEGER
+from kusanagi.api.param import TYPE_FLOAT
+from kusanagi.api.param import TYPE_NULL
+from kusanagi.api.param import TYPE_OBJECT
+from kusanagi.api.param import TYPE_STRING
+from kusanagi.payload import FIELD_MAPPINGS
 
 
 def test_api_param_to_payload():

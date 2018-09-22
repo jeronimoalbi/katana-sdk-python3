@@ -1,10 +1,10 @@
 import pytest
 
-from katana.api.schema.action import ActionSchema
-from katana.api.schema.service import HttpServiceSchema
-from katana.api.schema.service import ServiceSchema
-from katana.api.schema.service import ServiceSchemaError
-from katana.payload import Payload
+from kusanagi.api.schema.action import ActionSchema
+from kusanagi.api.schema.service import HttpServiceSchema
+from kusanagi.api.schema.service import ServiceSchema
+from kusanagi.api.schema.service import ServiceSchemaError
+from kusanagi.payload import Payload
 
 
 def test_api_schema_service_defaults():

@@ -1,9 +1,9 @@
-from katana import urn
-from katana.api.response import Response
-from katana.api.transport import Transport
-from katana.api.http.request import HttpRequest
-from katana.api.http.response import HttpResponse
-from katana.schema import SchemaRegistry
+from kusanagi import urn
+from kusanagi.api.response import Response
+from kusanagi.api.transport import Transport
+from kusanagi.api.http.request import HttpRequest
+from kusanagi.api.http.response import HttpResponse
+from kusanagi.schema import SchemaRegistry
 
 
 def test_api_response():

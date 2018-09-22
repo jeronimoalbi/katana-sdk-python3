@@ -1,16 +1,16 @@
 import logging
 
-from katana.logging import KatanaFormatter
-from katana.logging import value_to_log_string
+from kusanagi.logging import KusanagiFormatter
+from kusanagi.logging import value_to_log_string
 
 
-def test_katana_formatter():
+def test_kusanagi_formatter():
     class Record(object):
         pass
 
     record = Record()
     record.created = 1485622839.2490458  # Non GMT timestamp
-    assert KatanaFormatter().formatTime(record) == '2017-01-28T17:00:39.249'
+    assert KusanagiFormatter().formatTime(record) == '2017-01-28T17:00:39.249'
 
 
 def test_value_to_los_string():
@@ -44,27 +44,27 @@ def test_value_to_los_string():
     assert len(value_to_log_string('*' * (max_chars + 10))) == max_chars
 
 
-def test_setup_katana_logging(logs):
-    # Root logger must use KatanaFormatter
+def test_setup_kusanagi_logging(logs):
+    # Root logger must use KusanagiFormatter
     assert len(logging.root.handlers) == 1
-    assert isinstance(logging.root.handlers[0].formatter, KatanaFormatter)
+    assert isinstance(logging.root.handlers[0].formatter, KusanagiFormatter)
 
-    # SDK loggers must use KatanaFormatter
-    for name in ('katana', 'katana.api'):
+    # SDK loggers must use KusanagiFormatter
+    for name in ('kusanagi', 'kusanagi.api'):
         assert len(logging.getLogger(name).handlers) == 1
 
-    logger = logging.getLogger('katana')
+    logger = logging.getLogger('kusanagi')
     assert logger.level == logging.INFO
-    assert isinstance(logger.handlers[0].formatter, KatanaFormatter)
+    assert isinstance(logger.handlers[0].formatter, KusanagiFormatter)
 
-    logger = logging.getLogger('katana.api')
+    logger = logging.getLogger('kusanagi.api')
     assert isinstance(logger.handlers[0].formatter, logging.Formatter)
 
     assert logging.getLogger('asyncio').level == logging.ERROR
 
     # Basic check for logging format
     message = 'Test message'
-    logging.getLogger('katana').info(message)
+    logging.getLogger('kusanagi').info(message)
     out = logs.getvalue()
     assert len(out) > 0
     out_parts = out.split(' ')

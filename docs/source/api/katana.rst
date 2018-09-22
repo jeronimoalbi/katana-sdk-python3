@@ -1,4 +1,4 @@
-katana
+kusanagi
 ======
 
 Subpackages
@@ -6,101 +6,101 @@ Subpackages
 
 .. toctree::
 
-    katana.api
-    katana.sdk
+    kusanagi.api
+    kusanagi.sdk
 
-katana.errors
+kusanagi.errors
 -------------
 
-.. automodule:: katana.errors
+.. automodule:: kusanagi.errors
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.json
+kusanagi.json
 -----------
 
-.. automodule:: katana.json
+.. automodule:: kusanagi.json
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.logging
+kusanagi.logging
 --------------
 
-.. automodule:: katana.logging
+.. automodule:: kusanagi.logging
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.middleware
+kusanagi.middleware
 -----------------
 
-.. automodule:: katana.middleware
+.. automodule:: kusanagi.middleware
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.payload
+kusanagi.payload
 --------------
 
-.. automodule:: katana.payload
+.. automodule:: kusanagi.payload
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.schema
+kusanagi.schema
 -------------
 
-.. automodule:: katana.schema
+.. automodule:: kusanagi.schema
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.serialization
+kusanagi.serialization
 --------------------
 
-.. automodule:: katana.serialization
+.. automodule:: kusanagi.serialization
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.server
+kusanagi.server
 -------------
 
-.. automodule:: katana.server
+.. automodule:: kusanagi.server
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.service
+kusanagi.service
 --------------
 
-.. automodule:: katana.service
+.. automodule:: kusanagi.service
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.urn
+kusanagi.urn
 ----------
 
-.. automodule:: katana.urn
+.. automodule:: kusanagi.urn
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.utils
+kusanagi.utils
 ------------
 
-.. automodule:: katana.utils
+.. automodule:: kusanagi.utils
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.versions
+kusanagi.versions
 ---------------
 
-.. automodule:: katana.versions
+.. automodule:: kusanagi.versions
     :members:
     :undoc-members:
     :show-inheritance:

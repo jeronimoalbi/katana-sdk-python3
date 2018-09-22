@@ -1,8 +1,8 @@
 import sys
 
-from katana.api.schema.param import ParamSchema
-from katana.api.schema.param import HttpParamSchema
-from katana.payload import Payload
+from kusanagi.api.schema.param import ParamSchema
+from kusanagi.api.schema.param import HttpParamSchema
+from kusanagi.payload import Payload
 
 
 def test_api_schema_param(read_json):

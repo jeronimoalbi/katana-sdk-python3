@@ -1,11 +1,11 @@
 import pytest
 
-from katana.api.schema.action import ActionSchema
-from katana.api.schema.action import ActionSchemaError
-from katana.api.schema.action import HttpActionSchema
-from katana.api.schema.file import FileSchema
-from katana.api.schema.param import ParamSchema
-from katana.payload import Payload
+from kusanagi.api.schema.action import ActionSchema
+from kusanagi.api.schema.action import ActionSchemaError
+from kusanagi.api.schema.action import HttpActionSchema
+from kusanagi.api.schema.file import FileSchema
+from kusanagi.api.schema.param import ParamSchema
+from kusanagi.payload import Payload
 
 
 def test_api_schema_action_defaults():

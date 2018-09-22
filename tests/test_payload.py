@@ -1,13 +1,13 @@
 from datetime import datetime
 
 import pytest
-import katana.payload as payload_module
+import kusanagi.payload as payload_module
 
-from katana.payload import delete_path
-from katana.payload import get_path
-from katana.payload import path_exists
-from katana.payload import Payload
-from katana.payload import set_path
+from kusanagi.payload import delete_path
+from kusanagi.payload import get_path
+from kusanagi.payload import path_exists
+from kusanagi.payload import Payload
+from kusanagi.payload import set_path
 
 
 def test_payload():

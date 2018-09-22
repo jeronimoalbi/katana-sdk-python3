@@ -1,8 +1,8 @@
 import sys
 
-from katana.api.schema.file import FileSchema
-from katana.api.schema.file import HttpFileSchema
-from katana.payload import Payload
+from kusanagi.api.schema.file import FileSchema
+from kusanagi.api.schema.file import HttpFileSchema
+from kusanagi.payload import Payload
 
 
 def test_api_schema_file(read_json):

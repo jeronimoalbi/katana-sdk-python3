@@ -1,10 +1,10 @@
 import pytest
 
-from katana.api.file import File
-from katana.api.param import Param
-from katana.api.transport import TransactionTypeError
-from katana.api.transport import Transport
-from katana.payload import delete_path
+from kusanagi.api.file import File
+from kusanagi.api.param import Param
+from kusanagi.api.transport import TransactionTypeError
+from kusanagi.api.transport import Transport
+from kusanagi.payload import delete_path
 
 
 def test_api_transport(read_json):

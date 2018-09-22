@@ -3,12 +3,12 @@ import os
 import click
 import pytest
 
-from katana import payload
-from katana.sdk.runner import apply_cli_options
-from katana.sdk.runner import ComponentRunner
-from katana.sdk.runner import key_value_strings_callback
-from katana.utils import EXIT_ERROR
-from katana.utils import EXIT_OK
+from kusanagi import payload
+from kusanagi.sdk.runner import apply_cli_options
+from kusanagi.sdk.runner import ComponentRunner
+from kusanagi.sdk.runner import key_value_strings_callback
+from kusanagi.utils import EXIT_ERROR
+from kusanagi.utils import EXIT_OK
 from zmq.error import ZMQError
 
 
@@ -47,7 +47,7 @@ def test_apply_cli_options(mocker, cli):
         '--version', '1.0',
         '--component', 'service',
         '--framework-version', '1.0.0',
-        '--socket', '@katana-127-0-0-1-5010-foo',
+        '--socket', '@kusanagi-127-0-0-1-5010-foo',
         '--tcp', '5010',
         '--log-level', '6',
         '--debug',
@@ -68,7 +68,7 @@ def test_apply_cli_options(mocker, cli):
         'version': '1.0',
         'component': 'service',
         'framework_version': '1.0.0',
-        'socket': '@katana-127-0-0-1-5010-foo',
+        'socket': '@kusanagi-127-0-0-1-5010-foo',
         'tcp': 5010,
         'log_level': 6,
         'debug': True,
@@ -105,7 +105,7 @@ def test_component_runner_args():
         'component': 'service',
         }
     args = {
-        'socket': '@katana-127-0-0-1-4001-foo',
+        'socket': '@kusanagi-127-0-0-1-4001-foo',
         'tcp': '4001',
         'debug': True,
         'disable_compact_names': True,
@@ -123,7 +123,7 @@ def test_component_runner_args():
     assert runner.debug
     assert not runner.compact_names
 
-    expected_socket_name = '@katana-service-foo-1-0'
+    expected_socket_name = '@kusanagi-service-foo-1-0'
     default_socket_name = runner.get_default_socket_name()
     assert default_socket_name == expected_socket_name
 
@@ -149,7 +149,7 @@ def test_component_run(mocker, cli):
     callbacks = {'A': lambda action: '', 'B': lambda action: ''}
     server = mocker.MagicMock()
     ServerCls = mocker.MagicMock(return_value=server)
-    socket = '@katana-127-0-0-1-5010-foo'
+    socket = '@kusanagi-127-0-0-1-5010-foo'
     cli_args = [
         '--name', 'foo',
         '--version', '1.0',
@@ -218,7 +218,7 @@ def test_component_run_errors(mocker, cli):
     exit = mocker.patch('os._exit')
 
     ServerCls = mocker.MagicMock()
-    socket = '@katana-127-0-0-1-5010-foo'
+    socket = '@kusanagi-127-0-0-1-5010-foo'
     cli_args = [
         '--name', 'foo',
         '--version', '1.0',

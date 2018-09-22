@@ -1,4 +1,4 @@
-from katana.api.http.response import HttpResponse
+from kusanagi.api.http.response import HttpResponse
 
 
 def test_api_http_response_protocol():

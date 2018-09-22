@@ -1,7 +1,7 @@
 import pytest
 
-from katana import urn
-from katana.errors import KatanaError
+from kusanagi import urn
+from kusanagi.errors import KusanagiError
 
 
 def test_protocol_url():
@@ -14,5 +14,5 @@ def test_protocol_url():
     assert urn.url(urn.HTTP, address) == 'http://{}'.format(address)
     assert urn.url(urn.KTP, address) == 'ktp://{}'.format(address)
 
-    with pytest.raises(KatanaError):
-        urn.url('urn:katana:protocol:foo', address)
+    with pytest.raises(KusanagiError):
+        urn.url('urn:kusanagi:protocol:foo', address)

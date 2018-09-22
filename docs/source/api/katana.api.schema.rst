@@ -1,42 +1,42 @@
-katana.api.schema
+kusanagi.api.schema
 =================
 
-katana.api.schema.action
+kusanagi.api.schema.action
 ------------------------
 
-.. automodule:: katana.api.schema.action
+.. automodule:: kusanagi.api.schema.action
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.api.schema.error
+kusanagi.api.schema.error
 -----------------------
 
-.. automodule:: katana.api.schema.error
+.. automodule:: kusanagi.api.schema.error
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.api.schema.file
+kusanagi.api.schema.file
 ----------------------
 
-.. automodule:: katana.api.schema.file
+.. automodule:: kusanagi.api.schema.file
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.api.schema.param
+kusanagi.api.schema.param
 -----------------------
 
-.. automodule:: katana.api.schema.param
+.. automodule:: kusanagi.api.schema.param
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.api.schema.service
+kusanagi.api.schema.service
 -------------------------
 
-.. automodule:: katana.api.schema.service
+.. automodule:: kusanagi.api.schema.service
     :members:
     :undoc-members:
     :show-inheritance:

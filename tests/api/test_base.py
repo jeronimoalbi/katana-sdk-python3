@@ -1,10 +1,10 @@
 import pytest
 
-from katana.api import base
-from katana.api.schema.service import ServiceSchema
-from katana.errors import KatanaError
-from katana.schema import get_schema_registry
-from katana.schema import SchemaRegistry
+from kusanagi.api import base
+from kusanagi.api.schema.service import ServiceSchema
+from kusanagi.errors import KusanagiError
+from kusanagi.schema import get_schema_registry
+from kusanagi.schema import SchemaRegistry
 
 
 def test_api_base(mocker):
@@ -72,7 +72,7 @@ def test_api_base_get_services(registry):
 
 
 def test_api_base_get_service_schema(mocker):
-    mocker.patch('katana.schema.SchemaRegistry')
+    mocker.patch('kusanagi.schema.SchemaRegistry')
 
     # Get the mocked SchemaRegistry
     registry = get_schema_registry()
@@ -100,7 +100,7 @@ def test_api_base_get_service_schema(mocker):
 
     # Check getting a service schema
     init = mocker.patch(
-        'katana.api.schema.service.ServiceSchema.__init__',
+        'kusanagi.api.schema.service.ServiceSchema.__init__',
         return_value=None,
         )
     registry.get = mocker.MagicMock(return_value=payload)
@@ -111,15 +111,15 @@ def test_api_base_get_service_schema(mocker):
 
     # Check getting a service schema using a wildcard version
     expected_version = '1.0.0'
-    resolve = mocker.patch('katana.versions.VersionString.resolve')
+    resolve = mocker.patch('kusanagi.versions.VersionString.resolve')
     resolve.return_value = expected_version
     svc_schema = api.get_service_schema(svc_name, '*.*.*')
     assert isinstance(svc_schema, ServiceSchema)
     init.assert_called(svc_name, expected_version, payload)
 
-    # Check unresolved wildcard versions (resolve should raise KatanaError)
-    resolve.side_effect = KatanaError
-    with pytest.raises(KatanaError):
+    # Check unresolved wildcard versions (resolve should raise KusanagiError)
+    resolve.side_effect = KusanagiError
+    with pytest.raises(KusanagiError):
         api.get_service_schema(svc_name, '*.*.*')
 
 

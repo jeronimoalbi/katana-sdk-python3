@@ -1,22 +1,22 @@
 import pytest
 
-from katana.api.action import Action
-from katana.api.action import NoFileServerError
-from katana.api.action import parse_params
-from katana.api.action import ReturnTypeError
-from katana.api.action import UndefinedReturnValueError
-from katana.api.file import File
-from katana.api.file import file_to_payload
-from katana.api.param import Param
-from katana.api.param import TYPE_INTEGER
-from katana.api.param import TYPE_STRING
-from katana.payload import delete_path
-from katana.payload import ErrorPayload
-from katana.payload import FIELD_MAPPINGS
-from katana.payload import get_path
-from katana.payload import Payload
-from katana.schema import SchemaRegistry
-from katana.utils import nomap
+from kusanagi.api.action import Action
+from kusanagi.api.action import NoFileServerError
+from kusanagi.api.action import parse_params
+from kusanagi.api.action import ReturnTypeError
+from kusanagi.api.action import UndefinedReturnValueError
+from kusanagi.api.file import File
+from kusanagi.api.file import file_to_payload
+from kusanagi.api.param import Param
+from kusanagi.api.param import TYPE_INTEGER
+from kusanagi.api.param import TYPE_STRING
+from kusanagi.payload import delete_path
+from kusanagi.payload import ErrorPayload
+from kusanagi.payload import FIELD_MAPPINGS
+from kusanagi.payload import get_path
+from kusanagi.payload import Payload
+from kusanagi.schema import SchemaRegistry
+from kusanagi.utils import nomap
 
 # Mapped parameter names for payload
 PARAM = {

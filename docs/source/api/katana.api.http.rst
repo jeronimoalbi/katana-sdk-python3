@@ -1,18 +1,18 @@
-katana.api.http
+kusanagi.api.http
 ===============
 
-katana.api.http.request
+kusanagi.api.http.request
 -----------------------
 
-.. automodule:: katana.api.http.request
+.. automodule:: kusanagi.api.http.request
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.api.http.response
+kusanagi.api.http.response
 ------------------------
 
-.. automodule:: katana.api.http.response
+.. automodule:: kusanagi.api.http.response
     :members:
     :undoc-members:
     :show-inheritance:

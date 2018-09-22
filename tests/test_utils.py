@@ -5,7 +5,7 @@ from datetime import datetime
 
 import pytest
 
-from katana import utils
+from kusanagi import utils
 
 
 def test_uuid_generation():
@@ -22,7 +22,7 @@ def test_tcp_channel_string_generation():
 
 
 def test_ipc_channel_string_generation():
-    expected = 'ipc://@katana-test-service-name'
+    expected = 'ipc://@kusanagi-test-service-name'
 
     # Check that arguments are joined properly with a '-'
     assert utils.ipc('test', 'service', 'name') == expected

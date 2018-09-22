@@ -1,34 +1,34 @@
-katana.sdk
+kusanagi.sdk
 ==========
 
-katana.sdk.component
+kusanagi.sdk.component
 --------------------
 
-.. automodule:: katana.sdk.component
+.. automodule:: kusanagi.sdk.component
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.sdk.middleware
+kusanagi.sdk.middleware
 ---------------------
 
-.. automodule:: katana.sdk.middleware
+.. automodule:: kusanagi.sdk.middleware
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.sdk.runner
+kusanagi.sdk.runner
 -----------------
 
-.. automodule:: katana.sdk.runner
+.. automodule:: kusanagi.sdk.runner
     :members:
     :undoc-members:
     :show-inheritance:
 
-katana.sdk.service
+kusanagi.sdk.service
 ------------------
 
-.. automodule:: katana.sdk.service
+.. automodule:: kusanagi.sdk.service
     :members:
     :undoc-members:
     :show-inheritance:

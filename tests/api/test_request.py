@@ -1,14 +1,14 @@
 import pytest
 
-from katana import urn
-from katana.api.http.request import HttpRequest
-from katana.api.param import Param
-from katana.api.param import TYPE_INTEGER
-from katana.api.param import TYPE_NULL
-from katana.api.request import Request
-from katana.api.response import Response
-from katana.api.transport import Transport
-from katana.schema import SchemaRegistry
+from kusanagi import urn
+from kusanagi.api.http.request import HttpRequest
+from kusanagi.api.param import Param
+from kusanagi.api.param import TYPE_INTEGER
+from kusanagi.api.param import TYPE_NULL
+from kusanagi.api.request import Request
+from kusanagi.api.response import Response
+from kusanagi.api.transport import Transport
+from kusanagi.schema import SchemaRegistry
 
 
 def test_api_request():

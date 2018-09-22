@@ -3,7 +3,7 @@ import decimal
 
 import pytest
 
-from katana import json
+from kusanagi import json
 
 
 def test_encoder():

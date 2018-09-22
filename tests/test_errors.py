@@ -1,26 +1,26 @@
 import pytest
 
-from katana.errors import KatanaError
+from kusanagi.errors import KusanagiError
 
 
-def test_katana_error():
-    error = KatanaError()
+def test_kusanagi_error():
+    error = KusanagiError()
 
     # By default no message is used
     assert error.message is None
     # Class name is used as default string for error
-    assert str(error) == 'KatanaError'
+    assert str(error) == 'KusanagiError'
 
     # Create a new error with a message
     message = 'Test error message'
-    error = KatanaError(message)
+    error = KusanagiError(message)
     assert error.message == message
     assert str(error) == message
 
 
-def test_katana_error_subclass():
+def test_kusanagi_error_subclass():
     # Define an error subclass with a default mesage
-    class TestError(KatanaError):
+    class TestError(KusanagiError):
         message = 'Custom error message'
 
     error = TestError()

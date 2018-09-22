@@ -1,13 +1,13 @@
 import pytest
 
-from katana import schema
-from katana import utils
-from katana.errors import KatanaError
+from kusanagi import schema
+from kusanagi import utils
+from kusanagi.errors import KusanagiError
 
 
 def test_schema_registry():
     # Error is raised when registry is not initialized
-    with pytest.raises(KatanaError):
+    with pytest.raises(KusanagiError):
         schema.get_schema_registry()
 
     # Create the singleton

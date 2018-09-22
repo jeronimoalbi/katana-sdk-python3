@@ -7,8 +7,8 @@ import os
 import click.testing
 import pytest
 
-from katana.logging import setup_katana_logging
-from katana.schema import SchemaRegistry
+from kusanagi.logging import setup_kusanagi_logging
+from kusanagi.schema import SchemaRegistry
 
 
 @pytest.fixture(scope='session')
@@ -81,15 +81,15 @@ def logs(request, mocker):
         for handler in logging.root.handlers:
             logging.root.removeHandler(handler)
 
-        # Cleanup katana logger handlers too
-        logging.getLogger('katana').handlers = []
-        logging.getLogger('katana.api').handlers = []
+        # Cleanup kusanagi logger handlers too
+        logging.getLogger('kusanagi').handlers = []
+        logging.getLogger('kusanagi.api').handlers = []
 
         output.close()
 
     request.addfinalizer(cleanup)
-    mocker.patch('katana.logging.get_output_buffer', return_value=output)
-    setup_katana_logging(
+    mocker.patch('kusanagi.logging.get_output_buffer', return_value=output)
+    setup_kusanagi_logging(
         'component', 'name', 'version', 'framework-version', logging.INFO,
         )
     return output

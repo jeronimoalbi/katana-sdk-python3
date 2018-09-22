@@ -1,5 +1,5 @@
-from katana.sdk.middleware import get_component
-from katana.sdk.middleware import Middleware
+from kusanagi.sdk.middleware import get_component
+from kusanagi.sdk.middleware import Middleware
 
 
 def test_middleware_component():
