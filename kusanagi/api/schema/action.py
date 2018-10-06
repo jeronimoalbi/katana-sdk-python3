@@ -1,23 +1,17 @@
-"""
-Python 3 SDK for the KUSANAGI(tm) Framework (http://kusanagi.io)
-
-Copyright (c) 2016-2018 KUSANAGI S.L. All rights reserved.
-
-Distributed under the MIT license.
-
-For the full copyright and license information, please view the LICENSE
-file that was distributed with this source code.
-
-"""
+# Python 3 SDK for the KUSANAGI(tm) Framework (http://kusanagi.io)
+#
+# Copyright (c) 2016-2019 KUSANAGI S.L. All rights reserved.
+#
+# Distributed under the MIT license.
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
 from .error import ServiceSchemaError
 from .param import ParamSchema
 from .file import FileSchema
 from ... payload import get_path
 from ... payload import path_exists
 from ... payload import Payload
-
-__license__ = "MIT"
-__copyright__ = "Copyright (c) 2016-2018 KUSANAGI S.L. (http://kusanagi.io)"
 
 
 def entity_from_payload(entity_payload, entity=None):

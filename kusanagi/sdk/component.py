@@ -1,15 +1,11 @@
-"""
-Python 3 SDK for the KUSANAGI(tm) Framework (http://kusanagi.io)
-
-Copyright (c) 2016-2018 KUSANAGI S.L. All rights reserved.
-
-Distributed under the MIT license.
-
-For the full copyright and license information, please view the LICENSE
-file that was distributed with this source code.
-
-"""
-
+# Python 3 SDK for the KUSANAGI(tm) Framework (http://kusanagi.io)
+#
+# Copyright (c) 2016-2019 KUSANAGI S.L. All rights reserved.
+#
+# Distributed under the MIT license.
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
 import logging
 
 from ..errors import KusanagiError
@@ -17,9 +13,6 @@ from ..logging import INFO
 from ..logging import value_to_log_string
 from ..schema import SchemaRegistry
 from ..utils import Singleton
-
-__license__ = "MIT"
-__copyright__ = "Copyright (c) 2016-2018 KUSANAGI S.L. (http://kusanagi.io)"
 
 
 class ComponentError(KusanagiError):

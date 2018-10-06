@@ -1,24 +1,17 @@
-"""
-Python 3 SDK for the KUSANAGI(tm) Framework (http://kusanagi.io)
-
-Copyright (c) 2016-2018 KUSANAGI S.L. All rights reserved.
-
-Distributed under the MIT license.
-
-For the full copyright and license information, please view the LICENSE
-file that was distributed with this source code.
-
-"""
-
+# Python 3 SDK for the KUSANAGI(tm) Framework (http://kusanagi.io)
+#
+# Copyright (c) 2016-2019 KUSANAGI S.L. All rights reserved.
+#
+# Distributed under the MIT license.
+#
+# For the full copyright and license information, please view the LICENSE
+# file that was distributed with this source code.
 import re
 
 from functools import cmp_to_key
 from itertools import zip_longest
 
 from .errors import KusanagiError
-
-__license__ = "MIT"
-__copyright__ = "Copyright (c) 2016-2018 KUSANAGI S.L. (http://kusanagi.io)"
 
 # Regexp to check version pattern for invalid chars
 INVALID_PATTERN = re.compile(r'[^a-zA-Z0-9*.,_-]')

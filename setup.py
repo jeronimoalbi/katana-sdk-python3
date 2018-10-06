@@ -2,14 +2,14 @@
 from setuptools import find_packages
 from setuptools import setup
 
+from kusanagi import __license__
 from kusanagi import __version__
-
 
 setup(
     name='kusanagi-sdk-python3',
     version=__version__,
     url='http://kusanagi.io/',
-    license='MIT',
+    license=__license__,
     author='Jerónimo Albi',
     author_email='jeronimo.albi@kusanagi.io',
     description='Python 3 SDK to interface with the KUSANAGI™ framework',
