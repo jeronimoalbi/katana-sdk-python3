@@ -1,5 +1,4 @@
 # Python 3 SDK for the KUSANAGI(tm) Framework (http://kusanagi.io)
-#
 # Copyright (c) 2016-2019 KUSANAGI S.L. All rights reserved.
 #
 # Distributed under the MIT license.
