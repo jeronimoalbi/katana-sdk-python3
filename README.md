@@ -8,7 +8,7 @@ Python 3 SDK to interface with the **KUSANAGI**™ framework (https://kusanagi.i
 Requirements
 ------------
 
-* KUSANAGI Framework 1.2+
+* KUSANAGI Framework 0.1+
 * [Python](https://www.python.org/downloads/) 3.4+
 * [libzmq](http://zeromq.org/intro:get-the-software) 4.1.5+
 
@@ -95,12 +95,11 @@ With the configuration files written we've now modelled our components.
 Next, we'll create a python module that defines the **Middleware** component:
 
 ```python
-import logging
 import json
 
+from kusanagi.logging import INFO
 from kusanagi.sdk import Middleware
 
-LOG = logging.getLogger('kusanagi')
 
 def request_handler(request):
     return request
@@ -129,16 +128,12 @@ To do so, change the `request_handler` function to the following:
 def request_handler(request):
     http_request = request.get_http_request()
     path = http_request.get_url_path()
-    LOG.info('Pre-processing request to URL %s', path)
-
-    # Debug logs can also be written with the framework
-    request.log('Pre-processing request to URL {}'.format(path))
+    request.log('Pre-processing request to URL {}'.format(path), INFO)
 
     # These values would normally be extracted by parsing the URL
     request.set_service_name('users')
     request.set_service_version('0.1')
     request.set_action_name('read')
-
     return request
 ```
 
@@ -150,13 +145,29 @@ For the example, all responses will be formatted as JSON. To do so, change the `
 
 ```python
 def response_handler(response):
-    http_response = response.get_http_response()
-    http_response.set_header('Content-Type', 'application/json')
+    # Get the data returned by the called service using the transport API
+    contents = None
+    transport = response.get_transport()
+    origin = transport.get_origin_service()
+    for service in transport.get_data():
+        # Check that the service is the called service
+        if service.get_name() != origin[0] or service.get_version() != origin[1]:
+            continue
+
+        for action in service.get_actions():
+            # Check that the action is the called service action
+            if action.get_name() != origin[2]:
+                continue
+
+            # The the data returned by the service
+            contents = action.get_data()
 
     # Serialize transport to JSON and use it as response body
-    transport = response.get_transport()
-    body = json.dumps(transport.get_data())
-    http_response.set_body(body)
+    if contents:
+        body = json.dumps(contents)
+        http_response = response.get_http_response()
+        http_response.set_header('Content-Type', 'application/json')
+        http_response.set_body(body)
 
     return response
 ```
@@ -190,7 +201,8 @@ if __name__ == '__main__':
 
 Now, save the module as `service-users.py`.
 
-At this point you can add the **Middleware** to the **Gateway** config and run the example.
+At this point you can add the **Middleware** to the **Gateway** config and run the example
+and make a request to the URL path `/0.1/users/1` to get a response.
 
 Happy hacking!!
 
