@@ -206,14 +206,13 @@ class Api(object):
             self._logger.log(level, value_to_log_string(value))
 
     def done(self):
-        """This method does nothing and returns False.
+        """This is a dummy method that only raises an exception.
 
         It is implemented to comply with KUSANAGI SDK specifications.
 
-        :rtype: bool
+        :raises: ApiError
 
         """
 
-        raise ApiError(
-            'SDK does not support async call to end action: Api.done()'
-            )
+        msg = 'SDK does not support async call to end action: Api.done()'
+        raise ApiError(msg)
