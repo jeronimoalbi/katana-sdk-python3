@@ -1,16 +1,14 @@
-KATANA SDK for Python 3
+KUSANAGI SDK for Python 3
 =======================
 
-[![Build Status](https://travis-ci.org/kusanagi/katana-sdk-python3.svg?branch=master)](https://travis-ci.org/kusanagi/katana-sdk-python3)
-[![Coverage Status](https://coveralls.io/repos/github/kusanagi/katana-sdk-python3/badge.svg?branch=master)](https://coveralls.io/github/kusanagi/katana-sdk-python3?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-Python 3 SDK to interface with the **KATANA**™ framework (https://kusanagi.io).
+Python 3 SDK to interface with the **KUSANAGI**™ framework (https://kusanagi.io).
 
 Requirements
 ------------
 
-* KATANA Framework 1.2+
+* KUSANAGI Framework 0.1+
 * [Python](https://www.python.org/downloads/) 3.4+
 * [libzmq](http://zeromq.org/intro:get-the-software) 4.1.5+
 
@@ -20,7 +18,7 @@ Installation
 Enter the following command to install the SDK in your local environment:
 
 ```
-$ pip install katana-sdk-python3
+$ pip install kusanagi-sdk-python3
 ```
 
 To run all unit tests or code coverage install requirements first:
@@ -38,23 +36,23 @@ $ pytest --cache-clear
 Or, for code coverage, use the command:
 
 ```
-$ pytest -q --cov=katana --cov-report=term
+$ pytest -q --cov=kusanagi --cov-report=term
 ```
 
 Getting Started
 ---------------
 
-To start using the **KATANA** SDK for **Python 3** we'll create a **Middleware** that handles requests and responses, and then a simple **Service**.
+To start using the **KUSANAGI** SDK for **Python 3** we'll create a **Middleware** that handles requests and responses, and then a simple **Service**.
 
 First, define the configuration files for the example **Middleware** and **Service**.
 
-**KATANA** configurations can be defined as *XML*, *YAML* or *JSON*.
+**KUSANAGI** configurations can be defined as *XML*, *YAML* or *JSON*.
 For these examples we'll use *YAML*.
 
 Create a new config file for the **Middleware** as the following:
 
 ```yaml
-"@context": urn:katana:middleware
+"@context": urn:kusanagi:middleware
 name: example
 version: "0.1"
 request: true
@@ -62,7 +60,7 @@ response: true
 info:
   title: Example Middleware
 engine:
-  runner: urn:katana:runner:python3
+  runner: urn:kusanagi:runner:python3
   path: ./middleware-example.py
 ```
 
@@ -71,14 +69,14 @@ Now, save the config as `middleware-example.yaml`.
 Next, create a config file for the **Service** as the following:
 
 ```yaml
-"@context": urn:katana:service
+"@context": urn:kusanagi:service
 name: users
 version: "0.1"
 http-base-path: /0.1
 info:
   title: Example Users Service
 engine:
-  runner: urn:katana:runner:python3
+  runner: urn:kusanagi:runner:python3
   path: ./service-users.py
 action:
   - name: read
@@ -97,12 +95,11 @@ With the configuration files written we've now modelled our components.
 Next, we'll create a python module that defines the **Middleware** component:
 
 ```python
-import logging
 import json
 
-from katana.sdk import Middleware
+from kusanagi.logging import INFO
+from kusanagi.sdk import Middleware
 
-LOG = logging.getLogger('katana')
 
 def request_handler(request):
     return request
@@ -131,16 +128,12 @@ To do so, change the `request_handler` function to the following:
 def request_handler(request):
     http_request = request.get_http_request()
     path = http_request.get_url_path()
-    LOG.info('Pre-processing request to URL %s', path)
-
-    # Debug logs can also be written with the framework
-    request.log('Pre-processing request to URL {}'.format(path))
+    request.log('Pre-processing request to URL {}'.format(path), INFO)
 
     # These values would normally be extracted by parsing the URL
     request.set_service_name('users')
     request.set_service_version('0.1')
     request.set_action_name('read')
-
     return request
 ```
 
@@ -152,13 +145,29 @@ For the example, all responses will be formatted as JSON. To do so, change the `
 
 ```python
 def response_handler(response):
-    http_response = response.get_http_response()
-    http_response.set_header('Content-Type', 'application/json')
+    # Get the data returned by the called service using the transport API
+    contents = None
+    transport = response.get_transport()
+    origin = transport.get_origin_service()
+    for service in transport.get_data():
+        # Check that the service is the called service
+        if service.get_name() != origin[0] or service.get_version() != origin[1]:
+            continue
+
+        for action in service.get_actions():
+            # Check that the action is the called service action
+            if action.get_name() != origin[2]:
+                continue
+
+            # The the data returned by the service
+            contents = action.get_data()
 
     # Serialize transport to JSON and use it as response body
-    transport = response.get_transport()
-    body = json.dumps(transport.get_data())
-    http_response.set_body(body)
+    if contents:
+        body = json.dumps(contents)
+        http_response = response.get_http_response()
+        http_response.set_header('Content-Type', 'application/json')
+        http_response.set_body(body)
 
     return response
 ```
@@ -168,7 +177,7 @@ At this point there is a complete **Middleware** defined, so the next step is to
 Create a new python module that defines the **Service** as the following:
 
 ```python
-from katana.sdk import Service
+from kusanagi.sdk import Service
 
 
 def read_handler(action):
@@ -192,43 +201,44 @@ if __name__ == '__main__':
 
 Now, save the module as `service-users.py`.
 
-At this point you can add the **Middleware** to the **Gateway** config and run the example.
+At this point you can add the **Middleware** to the **Gateway** config and run the example
+and make a request to the URL path `/0.1/users/1` to get a response.
 
 Happy hacking!!
 
 Documentation
 -------------
 
-See the [API](https://kusanagi.io#katana/docs/sdk) for a technical reference of the SDK.
+See the [API](https://kusanagi.io#kusanagi/docs/sdk) for a technical reference of the SDK.
 
-For help using the framework see the [documentation](https://kusanagi.io#katana/docs).
+For help using the framework see the [documentation](https://kusanagi.io#kusanagi/docs).
 
 Support
 -------
 
-Please first read our [contribution guidelines](https://kusanagi.io#katana/open-source/contributing).
+Please first read our [contribution guidelines](https://kusanagi.io#kusanagi/open-source/contributing).
 
-* [Requesting help](https://kusanagi.io#katana/open-source/help)
-* [Reporting a bug](https://kusanagi.io#katana/open-source/bug)
-* [Submitting a patch](https://kusanagi.io#katana/open-source/patch)
-* [Security issues](https://kusanagi.io#katana/open-source/security)
+* [Requesting help](https://kusanagi.io#kusanagi/open-source/help)
+* [Reporting a bug](https://kusanagi.io#kusanagi/open-source/bug)
+* [Submitting a patch](https://kusanagi.io#kusanagi/open-source/patch)
+* [Security issues](https://kusanagi.io#kusanagi/open-source/security)
 
-We use [milestones](https://github.com/kusanagi/katana-sdk-python3/milestones) to track upcoming releases inline with our [versioning](https://kusanagi.io#katana/docs/framework/versions) strategy, and as defined in our [roadmap](https://kusanagi.io#katana/docs/framework/roadmap).
+We use [milestones](https://github.com/kusanagi/kusanagi-sdk-python3/milestones) to track upcoming releases inline with our [versioning](https://kusanagi.io#kusanagi/docs/framework/versions) strategy, and as defined in our [roadmap](https://kusanagi.io#kusanagi/docs/framework/roadmap).
 
 For commercial support see the [solutions](https://kusanagi.io/solutions) available or [contact us](https://kusanagi.io/contact) for more information.
 
 Contributing
 ------------
 
-If you'd like to know how you can help and support our Open Source efforts see the many ways to [get involved](https://kusanagi.io#katana/open-source).
+If you'd like to know how you can help and support our Open Source efforts see the many ways to [get involved](https://kusanagi.io#kusanagi/open-source).
 
-Please also be sure to review our [community guidelines](https://kusanagi.io#katana/open-source/conduct).
+Please also be sure to review our [community guidelines](https://kusanagi.io#kusanagi/open-source/conduct).
 
 License
 -------
 
 Copyright 2016-2018 KUSANAGI S.L. (https://kusanagi.io). All rights reserved.
 
-KUSANAGI, the sword logo, KATANA and the "K" logo are trademarks and/or registered trademarks of KUSANAGI S.L. All other trademarks are property of their respective owners.
+KUSANAGI, the sword logo and the "K" logo are trademarks and/or registered trademarks of KUSANAGI S.L. All other trademarks are property of their respective owners.
 
-Licensed under the [MIT License](https://kusanagi.io#katana/open-source/license). Redistributions of the source code included in this repository must retain the copyright notice found in each file.
+Licensed under the [MIT License](https://kusanagi.io#kusanagi/open-source/license). Redistributions of the source code included in this repository must retain the copyright notice found in each file.
